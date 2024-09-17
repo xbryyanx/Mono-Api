@@ -27,7 +27,7 @@ export const emailNotificationJob = () => {
                             currentCase.description,
                             currentCase.genre,
                             currentCase.age,
-                            currentCase.lat,
+                            currentCase.lat, 
                             currentCase.lng
                         );
 
