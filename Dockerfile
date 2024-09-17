@@ -3,13 +3,10 @@ FROM node:20.11.1
 WORKDIR /app
 
 COPY package*.json ./
+RUN npm install
 
-RUN npm i
-
-COPY . ./
-
+COPY . .
 RUN npm run build
 
 EXPOSE 3001
-
 CMD ["node", "dist/src/app.js"]

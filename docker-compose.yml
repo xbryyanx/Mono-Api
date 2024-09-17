@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   mono-api:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    image: xbryyanx/monoapi:latest
     container_name: mono-api
     ports:
       - "3000:3000"

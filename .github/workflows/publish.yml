@@ -3,7 +3,7 @@ name: Docker Build & Publish
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-push:
@@ -12,16 +12,17 @@ jobs:
       - name: Clone code
         uses: actions/checkout@v2
 
-      - name: Login to Docker hub
+      - name: Login to Docker Hub
         run: docker login -u "${{secrets.DOCKER_USERNAME}}" -p "${{secrets.DOCKER_PASSWORD}}"
 
       - name: Build Docker Image
-        run: docker build -t xbryyanx/monoapi:${{github.sha}} .
+        run: |
+          docker build --no-cache -t xbryyanx/monoapi:${{github.sha}} .
 
       - name: Tag Latest
         run: docker tag xbryyanx/monoapi:${{github.sha}} xbryyanx/monoapi:latest
 
       - name: Push Docker Image
         run: |
-          docker push xbryyanx/monoapi:${{github.sha}} 
+          docker push xbryyanx/monoapi:${{github.sha}}
           docker push xbryyanx/monoapi:latest
